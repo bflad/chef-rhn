@@ -7,11 +7,27 @@ _AND NOT RECOMMENDED FOR EVEN BETA TESTING YET._
 
 # REQUIREMENTS:
 
-None
+Active RHN subscription for node and at least one activation key.
 
 # USAGE:
 
-Add recipe[rhn] to your run_list and get on your merry way.
+In a node role:
+```
+default_attributes=(
+  "rhn" => {
+    "activation_keys" = "THIS-IS-REQUIRED"
+  }
+)
+run_list(
+  "recipe[rhn]"
+)
+```
+
+See the default cookbook attributes for more settings.
+
+### RHN Satellite
+
+Add at least your RHN Satellite FQDN to "hostname" attribute.
 
 # LICENSE and AUTHOR:
       
