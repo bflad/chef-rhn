@@ -2,8 +2,7 @@
 
 Registers node with Red Hat Network (rhn.redhat.com or RHN Satellite)
 
-_NOTE: THIS COOKBOOK IS CURRENTLY UNDER HEAVY ACTIVE DEVELOPMENT_
-_AND NOT RECOMMENDED FOR EVEN BETA TESTING YET._
+_THIS COOKBOOK HAS ONLY BEEN TESTED WITH RHN SATELLITE_
 
 # REQUIREMENTS:
 
@@ -11,7 +10,7 @@ Active RHN subscription for node and at least one activation key.
 
 # USAGE:
 
-In a node role:
+In a node role (probably your base):
 ```
 default_attributes=(
   "rhn" => {
