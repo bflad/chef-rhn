@@ -24,10 +24,8 @@ template "/usr/local/src/rhn_setup/bootstrap.sh" do
   mode   "0755"
 end
 
-if node[:rhn][:register]
-  execute "RHN Bootstrapping to #{node[:stash][:mysql][:connector][:version]}" do
-    cwd Chef::Config[:file_cache_path]
-    command "/usr/local/src/rhn_setup/bootstrap.sh"
-    not_if "grep -q #{node[:hostname]} /etc/sysconfig/rhn/systemid"
-  end
+execute "RHN Bootstrapping to #{node[:rhn][:hostname]}" do
+  cwd Chef::Config[:file_cache_path]
+  command "/usr/local/src/rhn_setup/bootstrap.sh"
+  not_if "grep -q #{node[:hostname]} /etc/sysconfig/rhn/systemid"
 end
