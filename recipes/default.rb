@@ -19,8 +19,8 @@
 
 template "/usr/local/src/rhn_setup/bootstrap.sh" do
   source "bootstrap.sh.erb"
-  owner  root
-  group  root
+  owner  "root"
+  group  "root"
   mode   "0755"
 end
 
