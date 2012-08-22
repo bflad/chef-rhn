@@ -43,35 +43,35 @@ echo "RHN Satellite Server Client bootstrap script v4.0"
 #   rhn_register.
 
 
-echo
-echo
-echo "MINOR MANUAL EDITING OF THIS FILE MAY BE REQUIRED!"
-echo
-echo "If this bootstrap script was created during the initial installation"
-echo "of an RHN Satellite, the ACTIVATION_KEYS, and ORG_GPG_KEY values will"
-echo "probably *not* be set (see below). If this is the case, please do the"
-echo "following:"
-echo "  - copy this file to a name specific to its use."
-echo "    (e.g., to bootstrap-SOME_NAME.sh - like bootstrap-web-servers.sh.)"
-echo "  - on the website create an activation key or keys for the system(s) to"
-echo "    be registered."
-echo "  - edit the values of the VARIABLES below (in this script) as"
-echo "    appropriate:"
-echo "    - ACTIVATION_KEYS needs to reflect the activation key(s) value(s)"
-echo "      from the website. XKEY or XKEY,YKEY"
-echo "    - ORG_GPG_KEY needs to be set to the name of the corporate public"
-echo "      GPG key filename (residing in /var/www/html/pub) if appropriate."
-echo
-echo "Verify that the script variable settings are correct:"
-echo "    - CLIENT_OVERRIDES should be only set differently if a customized"
-echo "      client-config-overrides-VER.txt file was created with a different"
-echo "      name."
-echo "    - ensure the value of HOSTNAME is correct."
-echo "    - ensure the value of ORG_CA_CERT is correct."
-echo
-echo "Enable this script: comment (with #'s) this block (or, at least just"
-echo "the exit below)"
-echo
+#echo
+#echo
+#echo "MINOR MANUAL EDITING OF THIS FILE MAY BE REQUIRED!"
+#echo
+#echo "If this bootstrap script was created during the initial installation"
+#echo "of an RHN Satellite, the ACTIVATION_KEYS, and ORG_GPG_KEY values will"
+#echo "probably *not* be set (see below). If this is the case, please do the"
+#echo "following:"
+#echo "  - copy this file to a name specific to its use."
+#echo "    (e.g., to bootstrap-SOME_NAME.sh - like bootstrap-web-servers.sh.)"
+#echo "  - on the website create an activation key or keys for the system(s) to"
+#echo "    be registered."
+#echo "  - edit the values of the VARIABLES below (in this script) as"
+#echo "    appropriate:"
+#echo "    - ACTIVATION_KEYS needs to reflect the activation key(s) value(s)"
+#echo "      from the website. XKEY or XKEY,YKEY"
+#echo "    - ORG_GPG_KEY needs to be set to the name of the corporate public"
+#echo "      GPG key filename (residing in /var/www/html/pub) if appropriate."
+#echo
+#echo "Verify that the script variable settings are correct:"
+#echo "    - CLIENT_OVERRIDES should be only set differently if a customized"
+#echo "      client-config-overrides-VER.txt file was created with a different"
+#echo "      name."
+#echo "    - ensure the value of HOSTNAME is correct."
+#echo "    - ensure the value of ORG_CA_CERT is correct."
+#echo
+#echo "Enable this script: comment (with #'s) this block (or, at least just"
+#echo "the exit below)"
+#echo
  
 
 # can be edited, but probably correct (unless created during initial install):
