@@ -76,25 +76,25 @@ echo "RHN Satellite Server Client bootstrap script v4.0"
 
 # can be edited, but probably correct (unless created during initial install):
 # NOTE: ACTIVATION_KEYS *must* be used to bootstrap a client machine.
-ACTIVATION_KEYS=<%= node[:rhn][:activation_keys] %>
-ORG_GPG_KEY=<%= node[:rhn][:org_gpg_key] %>
+ACTIVATION_KEYS=<%= node['rhn']['activation_keys'] %>
+ORG_GPG_KEY=<%= node['rhn']['org_gpg_key'] %>
 
 # can be edited, but probably correct:
-CLIENT_OVERRIDES=<%= node[:rhn][:client_overrides] %>
-HOSTNAME=<%= node[:rhn][:hostname] %>
+CLIENT_OVERRIDES=<%= node['rhn']['client_overrides'] %>
+HOSTNAME=<%= node['rhn']['hostname'] %>
 
-ORG_CA_CERT=<%= node[:rhn][:org_ca_cert] %>
-ORG_CA_CERT_IS_RPM_YN=<%= node[:rhn][:org_ca_cert].match(/\.rpm$/) ? "1" : "0" %>
+ORG_CA_CERT=<%= node['rhn']['org_ca_cert'] %>
+ORG_CA_CERT_IS_RPM_YN=<%= node['rhn']['org_ca_cert'].match(/\.rpm$/) ? "1" : "0" %>
 
-USING_SSL=<%= node[:rhn][:ssl] ? "1" : "0" %>
-USING_GPG=<%= node[:rhn][:gpg] ? "1" : "0" %>
+USING_SSL=<%= node['rhn']['ssl'] ? "1" : "0" %>
+USING_GPG=<%= node['rhn']['gpg'] ? "1" : "0" %>
 
-REGISTER_THIS_BOX=<%= node[:rhn][:register] ? "1" : "0" %>
+REGISTER_THIS_BOX=<%= node['rhn']['register'] ? "1" : "0" %>
 
-ALLOW_CONFIG_ACTIONS=<%= node[:rhn][:allow_config_actions] ? "1" : "0" %>
-ALLOW_REMOTE_COMMANDS=<%= node[:rhn][:allow_remote_commands] ? "1" : "0" %>
+ALLOW_CONFIG_ACTIONS=<%= node['rhn']['allow_config_actions'] ? "1" : "0" %>
+ALLOW_REMOTE_COMMANDS=<%= node['rhn']['allow_remote_commands'] ? "1" : "0" %>
 
-FULLY_UPDATE_THIS_BOX=<%= node[:rhn][:fully_update] ? "1" : "0" %>
+FULLY_UPDATE_THIS_BOX=<%= node['rhn']['fully_update'] ? "1" : "0" %>
 
 #
 # -----------------------------------------------------------------------------
