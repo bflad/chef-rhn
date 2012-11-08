@@ -17,6 +17,13 @@
 # limitations under the License.
 #
 
+directory "/usr/local/src/rhn_setup" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
+
 template "/usr/local/src/rhn_setup/bootstrap.sh" do
   source "bootstrap.sh.erb"
   owner  "root"
