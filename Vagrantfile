@@ -48,6 +48,11 @@ Vagrant.configure("2") do |config|
     freebsd9.vm.hostname = "#{cookbook}-freebsd-9"
   end
 
+  config.vm.define :rhel6 do |rhel6|
+    rhel6.vm.box      = 'opscode-rhel-6.5'
+    rhel6.vm.hostname = "#{cookbook}-rhel-6"
+  end
+
   config.vm.define :ubuntu1204 do |ubuntu1204|
     ubuntu1204.vm.box      = 'opscode-ubuntu-12.04'
     ubuntu1204.vm.box_url  = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box'
