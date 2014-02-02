@@ -6,10 +6,10 @@ Vagrant.configure("2") do |config|
   config.cache.auto_detect = true
   config.omnibus.chef_version = :latest
 
-  config.vm.define :centos5 do |centos6|
-    centos6.vm.box      = 'opscode-centos-5.10'
-    centos6.vm.box_url  = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-5.10_chef-provisionerless.box'
-    centos6.vm.hostname = "#{cookbook}-centos-5"
+  config.vm.define :centos5 do |centos5|
+    centos5.vm.box      = 'opscode-centos-5.10'
+    centos5.vm.box_url  = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-5.10_chef-provisionerless.box'
+    centos5.vm.hostname = "#{cookbook}-centos-5"
   end
 
   config.vm.define :centos6 do |centos6|
@@ -46,6 +46,11 @@ Vagrant.configure("2") do |config|
     freebsd9.vm.box      = 'opscode-freebsd-9.2'
     freebsd9.vm.box_url  = 'http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_freebsd-9.2_chef-provisionerless.box'
     freebsd9.vm.hostname = "#{cookbook}-freebsd-9"
+  end
+
+  config.vm.define :rhel5 do |rhel5|
+    rhel5.vm.box      = 'opscode-rhel-5.10'
+    rhel5.vm.hostname = "#{cookbook}-rhel-5"
   end
 
   config.vm.define :rhel6 do |rhel6|
