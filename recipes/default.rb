@@ -1,23 +1,14 @@
-if node['rhn']['activation_keys'].empty?
-  Chef::Log.error('RHN Activation Key missing, skipping RHN bootstrap.')
-else
-  directory '/usr/local/src/rhn_setup' do
-    owner 'root'
-    group 'root'
-    mode '0755'
-    action :create
-  end
-
-  template '/usr/local/src/rhn_setup/bootstrap.sh' do
-    source 'bootstrap.sh.erb'
-    owner  'root'
-    group  'root'
-    mode   '0755'
-  end
-
-  execute "RHN Bootstrapping to #{node['rhn']['hostname']}" do
-    cwd Chef::Config[:file_cache_path]
-    command '/usr/local/src/rhn_setup/bootstrap.sh'
-    not_if "grep -q #{node['hostname']} /etc/sysconfig/rhn/systemid"
-  end
+unless node['rhn']['hostname'] == 'xmlrpc.rhn.redhat.com'
+  include_recipe 'rhn::org_gpg_key' if node['rhn']['org_gpg_key']['url']
+  include_recipe 'rhn::org_ca_cert' if node['rhn']['ssl']
 end
+
+include_recipe 'rhn::up2date'
+include_recipe 'rhn::register' if node['rhn']['register']
+
+unless node['rhn']['actions']['disabled'].empty? && node['rhn']['actions']['enabled'].empty?
+  include_recipe 'rhn::rhncfg'
+  include_recipe 'rhn::actions'
+end
+
+include_recipe 'rhn::rhnsd' if node['rhn']['rhnsd']['enabled']
