@@ -2,7 +2,7 @@
 
 ## Description
 
-Registers node with Red Hat Network (rhn.redhat.com or RHN Satellite)
+Registers node with Red Hat Network (rhn.redhat.com or RHN Satellite) and configures client.
 
 ## Requirements
 
