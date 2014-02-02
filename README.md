@@ -125,7 +125,7 @@ Attribute | Description | Type | Default
 ----------|-------------|------|--------
 cmd_timeout | Timeout for remote RHN commands (catchable exception: `Chef::Provider::RhnSystem::CommandTimeout`)| Fixnum | `node['rhn']['cmd_timeout']`
 
-#### register
+#### rhn_system action :register
 
 These attributes are associated with this LWRP action. The name attribute will set the RHN profile name on registration.
 
@@ -134,7 +134,7 @@ Attribute | Description | Type | Default
 activation_keys | Activation keys for RHN Satellite registration | String | `node['rhn']['activation_keys']`
 hostname | Hostname passthrough to determine hosted versus RHN Satellite registration | String | `node['rhn']['hostname']`
 password | Password for hosted RHN | String | `node['rhn']['password']`
-username | Password for hosted RHN | String | `node['rhn']['username']`
+username | Username for hosted RHN | String | `node['rhn']['username']`
 
 Register with hosted RHN with hostname as profile name and possibly username/password from an encrypted data bag:
 
@@ -155,7 +155,7 @@ rhn_system 'special-snowflake'
 
 Below are the available actions for the LWRP, default being `enable`.
 
-#### disable
+#### rhn_system_action action :disable
 
 The name attribute is the RHN system action name.
 
@@ -167,7 +167,7 @@ rhn_system_action 'run' do
 end
 ```
 
-#### enable
+#### rhn_system_action action :enable
 
 The name attribute is the RHN system action name.
 
