@@ -6,7 +6,7 @@ class CommandTimeout < RuntimeError; end
 
 def load_current_resource
   @current_resource = Chef::Resource::RhnSystem.new(new_resource)
-  if ::File.exists?('/etc/sysconfig/rhn/systemid')
+  if ::File.exist?('/etc/sysconfig/rhn/systemid')
     systemid = {}
     require 'rexml/document'
     systemid_xml = REXML::Document.new(::File.open('/etc/sysconfig/rhn/systemid', 'r'))

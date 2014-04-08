@@ -5,9 +5,9 @@ include Helpers::Rhn
 def load_current_resource
   @current_resource = Chef::Resource::RhnSystemAction.new(new_resource)
   if new_resource.action_name == 'run'
-    @current_resource.enabled(true) if ::File.exists?('/etc/sysconfig/rhn/allowed-actions/script/run')
+    @current_resource.enabled(true) if ::File.exist?('/etc/sysconfig/rhn/allowed-actions/script/run')
   else
-    @current_resource.enabled(true) if ::File.exists?("/etc/sysconfig/rhn/allowed-actions/configfiles/#{rhn_action}")
+    @current_resource.enabled(true) if ::File.exist?("/etc/sysconfig/rhn/allowed-actions/configfiles/#{rhn_action}")
   end
   @current_resource
 end
