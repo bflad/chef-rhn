@@ -52,6 +52,7 @@ register | Register system with RHN | Boolean | true
 retries | Network retries for package commands | Fixnum | 1
 ssl | Enable SSL | Boolean | true
 username | RHN username for hosted RHN operations | String | rhnuser
+write_log | Log to /var/log/up2date which packages has been added and removed | Fixnum | 0
 
 ### Actions Attributes
 
