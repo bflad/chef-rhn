@@ -1,5 +1,4 @@
 ## 0.2.0
-# bleh
 
 * Enhancement: Add username/password support for hosted RHN
 * Enhancement: Add proxy support
