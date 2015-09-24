@@ -48,5 +48,5 @@ end
 
 def execute_cmd(cmd)
   Chef::Log.debug('Executing: ' + cmd)
-  shell_out(cmd)
+  shell_out!(cmd)
 end
