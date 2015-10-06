@@ -9,7 +9,7 @@ module Helpers
         when Array
           cli_line += value.map { |a| " --#{arg} " + a }.join
         when Fixnum, Integer, String
-          cli_line += " --#{arg} #{value}"
+          cli_line += " --#{arg} '#{value}'"
         when TrueClass
           cli_line += " --#{arg}"
         end
