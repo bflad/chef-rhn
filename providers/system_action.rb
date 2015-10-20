@@ -7,7 +7,7 @@ def load_current_resource
   if new_resource.action_name == 'run'
     @current_resource.enabled(true) if ::File.exist?('/etc/sysconfig/rhn/allowed-actions/script/run')
   else
-    @current_resource.enabled(true) if ::File.exist?("/etc/sysconfig/rhn/allowed-actions/configfiles/#{rhn_action}")
+    @current_resource.enabled(true) if ::File.exist?("/etc/sysconfig/rhn/allowed-actions/configfiles/#{new_resource.action_name}")
   end
   @current_resource
 end
@@ -48,5 +48,5 @@ end
 
 def execute_cmd(cmd)
   Chef::Log.debug('Executing: ' + cmd)
-  shell_out(cmd)
+  shell_out!(cmd)
 end
