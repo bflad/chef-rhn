@@ -4,7 +4,7 @@ maintainer_email 'bflad417@gmail.com'
 license 'Apache 2.0'
 description 'Registers node with RHN'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.2.0'
+version '0.3.0'
 recipe 'rhn', 'RHN client configuration and system registration'
 recipe 'rhn::actions', 'Configures RHN system actions on client'
 recipe 'rhn::org_ca_cert', 'Installs organization CA certificate'
