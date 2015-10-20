@@ -6,6 +6,7 @@ default['rhn']['register'] = true
 default['rhn']['retries'] = 1
 default['rhn']['ssl'] = true
 default['rhn']['username'] = 'rhnuser'
+default['rhn']['write_log'] = 0
 
 default['rhn']['actions']['disabled'] = []
 default['rhn']['actions']['enabled'] = []

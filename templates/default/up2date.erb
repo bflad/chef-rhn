@@ -22,7 +22,7 @@ enableProxy[comment]=Use a HTTP Proxy
 enableProxy=<%= node['rhn']['proxy']['url'] ? '1' : '0' %>
 
 writeChangesToLog[comment]=Log to /var/log/up2date which packages has been added and removed
-writeChangesToLog=0
+writeChangesToLog=<%= node['rhn']['write_log'] %>
 
 serverURL[comment]=Remote server URL (use FQDN)
 serverURL=https://<%= node['rhn']['hostname'] %>/XMLRPC

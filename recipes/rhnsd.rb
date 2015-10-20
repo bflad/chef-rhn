@@ -8,4 +8,5 @@ end
 service 'rhnsd' do
   supports :status => true, :restart => true, :reload => true
   action [:enable, :start]
+  subscribes :restart, "template[/etc/sysconfig/rhn/rhnsd]", :delayed
 end
