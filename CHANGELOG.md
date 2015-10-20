@@ -1,3 +1,9 @@
+## 0.3.0
+
+* [#5][]: Allow generated attributes, check server instead of file for registration status, and fail immediately on shell commands (shell_out!)
+
+[#5]: https://github.com/bflad/chef-rhn/issues/5
+
 ## 0.2.0
 
 * Enhancement: Add username/password support for hosted RHN
