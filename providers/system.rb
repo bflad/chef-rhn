@@ -44,7 +44,7 @@ end
 
 def registered?
   registered = false
-  cmd = Mixlib::ShellOut.new('/usr/sbin/rhn-profile-sync')
+  cmd = Mixlib::ShellOut.new('/usr/sbin/spacewalk-channel --list')
   begin cmd.run_command
     rescue Errno::ENOENT
   end
