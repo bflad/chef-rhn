@@ -1,5 +1,9 @@
 # chef-rhn [![Build Status](https://secure.travis-ci.org/bflad/chef-rhn.png?branch=master)](http://travis-ci.org/bflad/chef-rhn)
 
+On December 9th, 2015, Chef announced a new `redhat_subscription_manager` cookbook that likely will replace some or all of the usefulness of this cookbook. Please see their blog post for more information!
+
+https://www.chef.io/blog/2015/12/09/managing-red-hat-subscriptions-with-chef-2/
+
 ## Description
 
 Registers node with Red Hat Network (rhn.redhat.com or RHN Satellite) and configures client.
