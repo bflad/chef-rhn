@@ -9,6 +9,7 @@ if node['rhn']['org_ca_cert']['url'].match(/\.rpm$/)
     source node['rhn']['org_ca_cert']['url']
     if node['rhn']['org_ca_cert']['action'] == 'upgrade'
       action :create
+      ignore_failure node['rhn']['org_ca_cert']['ignore_failure']
     else
       action :create_if_missing
     end
@@ -26,6 +27,7 @@ else
     source node['rhn']['org_ca_cert']['url']
     if node['rhn']['org_ca_cert']['action'] == 'upgrade'
       action :create
+      ignore_failure node['rhn']['org_ca_cert']['ignore_failure']
     else
       action :create_if_missing
     end
