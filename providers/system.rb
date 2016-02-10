@@ -1,4 +1,5 @@
 require 'chef/mixin/shell_out'
+require 'xmlrpc/client'
 include Chef::Mixin::ShellOut
 include Helpers::Rhn
 
@@ -23,6 +24,7 @@ end
 action :register do
   unless registered?
     register
+    reactivation_key
     new_resource.updated_by_last_action(true)
   end
 end
@@ -53,6 +55,10 @@ def registered?
 end
 
 def register
+  keys = String.new
+  keys = "#{new_resource.reactivation_key}," unless new_resource.reactivation_key.nil?
+  keys << new_resource.activation_keys unless new_resource.activation_keys.nil?
+
   register_args =
     if new_resource.hostname == 'xmlrpc.rhn.redhat.com'
       cli_args(
@@ -63,10 +69,18 @@ def register
       )
     else
       cli_args(
-        'activationkey' => new_resource.activation_keys,
+        'activationkey' => keys,
         'force' => true,
         'profilename' => new_resource.profile_name
       )
     end
+  puts "args bitches: #{register_args}"
   execute_cmd("rhnreg_ks #{register_args}")
+end
+
+def reactivation_key
+  puts 'Generating Reactivation Key'
+  my_server = XMLRPC::Client.new(new_resource.hostname, "/rpc/api")
+  key = my_server.call('system.obtainReactivationKey', ::File.read('/etc/sysconfig/rhn/systemid'))
+  node.override['rhn']['reactivation_key'] = key unless key.nil?
 end
