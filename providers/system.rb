@@ -56,7 +56,12 @@ end
 
 def register
   keys = String.new
-  keys = "#{new_resource.reactivation_key}," unless new_resource.reactivation_key.nil?
+  if ::File.exist?('/etc/sysconfig/rhn/reactivation_key')
+    my_reactivation_key = ::File.read('/etc/sysconfig/rhn/reactivation_key').chomp
+    keys = "#{my_reactivation_key}," unless my_reactivation_key.nil?
+    ::File.unlink('/etc/sysconfig/rhn/reactivation_key')
+  end
+
   keys << new_resource.activation_keys unless new_resource.activation_keys.nil?
 
   register_args =
@@ -82,5 +87,7 @@ def reactivation_key
   puts 'Generating Reactivation Key'
   my_server = XMLRPC::Client.new(new_resource.hostname, "/rpc/api")
   key = my_server.call('system.obtainReactivationKey', ::File.read('/etc/sysconfig/rhn/systemid'))
-  node.override['rhn']['reactivation_key'] = key unless key.nil?
+  open('/etc/sysconfig/rhn/reactivation_key', 'w') { |f|
+    f.puts key
+  }
 end
