@@ -79,7 +79,6 @@ def register
         'profilename' => new_resource.profile_name
       )
     end
-  puts "args bitches: #{register_args}"
   execute_cmd("rhnreg_ks #{register_args}")
 end
 
