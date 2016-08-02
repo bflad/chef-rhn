@@ -119,6 +119,7 @@ interval | Sync interval in minutes (must be above 60) | Fixnum | 240
 
 * system: Register node with RHN
 * system_action: Enable/disable RHN system action on node
+* rhn_channel: Enable/disable channels on node
 
 ### rhn_system
 
@@ -186,6 +187,31 @@ Enable all actions on node:
 
 ```
 rhn_system_action 'all'
+```
+
+### rhn_channel
+Below are the available actions for the LWRP, default being `enable`.
+
+#### rhn_channel action :enable
+The name attribute is the channel name. Using this LWRP will require credentials similar to the rhn_system LWRP. Enable is the default action. You can disable a channel by explicitly declaring :disable as the resource action.
+
+Enable 'foo' channel on node:
+```
+rhn_channel 'foo' do
+  action :enable
+  username my_encrypted_bag['user']
+  password my_encrypted_bag['pass']
+end
+```
+
+#### rhn_channel action :disable
+Disable 'foo' channel on node:
+```
+rhn_channel 'foo' do
+  action :disable
+  username my_encrypted_bag['user']
+  password my_encrypted_bag['pass']
+end
 ```
 
 ## Recipes
