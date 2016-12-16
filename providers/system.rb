@@ -44,6 +44,16 @@ EOM
   end
 end
 
+def execute_cmd_maybe?(cmd, tries, timeout = new_resource.cmd_timeout)
+  Chef::Log.info("Executing: #{cmd}, #{tries} tries remaining.")
+  raise SystemError, "#{cmd} -- too many failures. Aborting!" if tries == 0
+  begin
+    shell_out!(cmd, :timeout => timeout)
+  rescue
+    execute_cmd_maybe?(cmd, tries - 1)
+  end
+end
+
 def registered?
   registered = false
   cmd = Mixlib::ShellOut.new('/usr/sbin/spacewalk-channel --list')
@@ -79,7 +89,7 @@ def register
         'profilename' => new_resource.profile_name
       )
     end
-  execute_cmd("rhnreg_ks #{register_args}")
+  execute_cmd_maybe?("rhnreg_ks #{register_args}", 5)
 end
 
 def reactivation_key
