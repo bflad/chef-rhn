@@ -50,7 +50,12 @@ def registered?
   begin cmd.run_command
     rescue Errno::ENOENT
   end
-  registered = true unless cmd.error?
+  if cmd.error?
+    puts "spacewalk-channel failed with STDOUT: #{cmd.stdout} STDERR: #{cmd.stderr}"
+    registered = false
+  else
+    registered = true
+  end
   registered
 end
 
