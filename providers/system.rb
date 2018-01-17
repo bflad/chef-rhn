@@ -44,13 +44,13 @@ EOM
   end
 end
 
-def execute_cmd_maybe?(cmd, tries, timeout = new_resource.cmd_timeout)
+def execute_cmd_with_retries(cmd, tries, timeout = new_resource.cmd_timeout)
   Chef::Log.info("Executing: #{cmd}, #{tries} tries remaining.")
   raise SystemError, "#{cmd} -- too many failures. Aborting!" if tries == 0
   begin
-    shell_out!(cmd, :timeout => timeout)
+    execute_cmd(cmd, :timeout => timeout)
   rescue
-    execute_cmd_maybe?(cmd, tries - 1)
+    execute_cmd_with_retries(cmd, tries - 1)
   end
 end
 
@@ -60,7 +60,12 @@ def registered?
   begin cmd.run_command
     rescue Errno::ENOENT
   end
-  registered = true unless cmd.error?
+  if cmd.error?
+    puts "spacewalk-channel failed with STDOUT: #{cmd.stdout} STDERR: #{cmd.stderr}"
+    registered = false
+  else
+    registered = true
+  end
   registered
 end
 
@@ -89,7 +94,7 @@ def register
         'profilename' => new_resource.profile_name
       )
     end
-  execute_cmd_maybe?("rhnreg_ks #{register_args}", 5)
+  execute_cmd_with_retries("rhnreg_ks #{register_args}", new_resource.reg_retries)
 end
 
 def reactivation_key
