@@ -6,7 +6,7 @@ include Helpers::Rhn
 class CommandTimeout < RuntimeError; end
 
 def load_current_resource
-  @current_resource = Chef::Resource::RhnSystem.new(new_resource)
+  @current_resource = new_resource.class.new(new_resource.name)
   if ::File.exist?('/etc/sysconfig/rhn/systemid')
     systemid = {}
     require 'rexml/document'
@@ -50,7 +50,12 @@ def registered?
   begin cmd.run_command
     rescue Errno::ENOENT
   end
-  registered = true unless cmd.error?
+  if cmd.error?
+    puts "spacewalk-channel failed with STDOUT: #{cmd.stdout} STDERR: #{cmd.stderr}"
+    registered = false
+  else
+    registered = true
+  end
   registered
 end
 
