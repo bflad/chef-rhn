@@ -3,7 +3,7 @@ include Chef::Mixin::ShellOut
 include Helpers::Rhn
 
 def load_current_resource
-  @current_resource = Chef::Resource::RhnSystemAction.new(new_resource)
+  @current_resource = new_resource.class.new(new_resource.name)
   if new_resource.action_name == 'run'
     @current_resource.enabled(true) if ::File.exist?('/etc/sysconfig/rhn/allowed-actions/script/run')
   else

@@ -6,7 +6,7 @@ include Helpers::Rhn
 class CommandTimeout < RuntimeError; end
 
 def load_current_resource
-  @current_resource = Chef::Resource::RhnSystem.new(new_resource)
+  @current_resource = new_resource.class.new(new_resource.name)
   if ::File.exist?('/etc/sysconfig/rhn/systemid')
     systemid = {}
     require 'rexml/document'
