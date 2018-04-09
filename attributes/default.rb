@@ -7,6 +7,7 @@ default['rhn']['retries'] = 1
 default['rhn']['ssl'] = true
 default['rhn']['username'] = 'rhnuser'
 default['rhn']['profilename'] = node['hostname'] || node['fqdn']
+default['rhn']['reg_retries'] = 5
 default['rhn']['channels'] = Mixlib::ShellOut.new('rhn-channel -l').run_command.stdout.split
 
 default['rhn']['actions']['disabled'] = []
